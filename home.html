@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autobots - Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="images/logo.png" alt="RoboTech">
+        </div>
+
+        <div class="nav-links">
+            <a href="#" class="nav-item"><i class="fas fa-home"></i> Home</a>
+            
+            <div class="dropdown">
+                <a href="#" class="nav-item"><i class="fas fa-robot"></i> Products</a>
+                <div class="dropdown-content">
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-people-arrows"></i>
+                        Cobots
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-industry"></i>
+                        Industrial Robots
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-grip-lines"></i>
+                        Electrical Grippers
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-hand-paper"></i>
+                        Anthropomorphic Grippers
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-book-open"></i>
+                        Educational Robots
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="fas fa-code"></i>
+                        Simulation Software
+                    </a>
+                </div>
+            </div>
+
+            <a href="#" class="nav-item"><i class="fas fa-chalkboard-teacher"></i> Training</a>
+            <a href="#" class="nav-item"><i class="fas fa-download"></i> Downloads</a>
+            <a href="#" class="nav-item"><i class="fas fa-phone-alt"></i> Contact Us</a>
+            <a href="#" class="nav-item"><i class="fas fa-blog"></i> Blog</a>
+        </div>
+        <div class="hamburger">☰</div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-header">
+            <img src="images/logo.png" alt="RoboTech" width="120">
+            <div class="close-menu">×</div>
+        </div>
+        <a href="#" class="mobile-nav-item"><i class="fas fa-home"></i> Home</a>
+        
+        <div class="mobile-nav-item"><i class="fas fa-robot"></i> Products</div>
+        <div class="mobile-dropdown">
+            <a href="#" class="mobile-dropdown-item">Cobots</a>
+            <a href="#" class="mobile-dropdown-item">Industrial Robots</a>
+            <a href="#" class="mobile-dropdown-item">Electrical Grippers</a>
+            <a href="#" class="mobile-dropdown-item">Anthropomorphic Grippers</a>
+            <a href="#" class="mobile-dropdown-item">Educational Robots</a>
+            <a href="#" class="mobile-dropdown-item">Simulation Software</a>
+        </div>
+
+        <a href="#" class="mobile-nav-item"><i class="fas fa-chalkboard-teacher"></i> Training</a>
+        <a href="#" class="mobile-nav-item"><i class="fas fa-download"></i> Downloads</a>
+        <a href="#" class="mobile-nav-item"><i class="fas fa-phone-alt"></i> Contact Us</a>
+        <a href="#" class="mobile-nav-item"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+
+    <!--Hero Section-->
+        <section class="hero">
+            <div class="video-container">
+                <video autoplay muted loop id="heroVideo" playsinline>
+                    <source src="demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrow"></div>
+            </div>
+        </section>
+
+        <!--About Us-->
+        <section id="who-we-are-section" class="section">
+            <div class="section-content">
+                <h1 class="section-title">ABOUT <span>US</span></h1>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <div class="info-box">
+                            <div class="section-header">
+                                <i class="fas fa-building"></i>
+                                <h2>Who Are We?</h2>
+                            </div>
+                            <p>
+                                Autobots is a wing of M/s.Mayura's Industrial Services (MIS) which has a rich experience of over 20 years in the Indian Automation Industry. Mayuras is Galaxy System Integrator for M/s. Schneider Electric & distributor for M/s.Bonfiglioli for the past 20 years. We have the pleasure of introducing Doosan robotics in India this year.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex-item">
+                        <img src="images/aboutus - 1.jpg" alt="Autobots Team" class="rounded-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Have Section -->
+        <section id="what-we-have-section" class="section gray-bg">
+            <div class="section-content">
+                <div class="section-header centered">
+                    <i class="fas fa-box"></i>
+                    <h2>What Do We Have?</h2>
+                </div>
+                <p class="section-intro">
+                    We have with us a wide range of products in our portfolio to meet the needs of all customers.
+                </p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3>6-Axis Cobots</h3>
+                        <p>Advanced 6-axis collaborative robots by Doosan Robotics designed for precision and safety.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-computer"></i>
+                        </div>
+                        <h3>Desktop Robots</h3>
+                        <p>Compact desktop robots perfect for education and light industry applications.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <h3>Production Line Accessories</h3>
+                        <p>Accessories to simulate and enhance production line efficiency and automation.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Collaborative Robots</h3>
+                        <p>Robots designed to work alongside humans safely and efficiently in various environments.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-grip-vertical"></i>
+                        </div>
+                        <h3>Wide Range of Grippers</h3>
+                        <p>Versatile grippers for different applications and precision requirements.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Simulation & Control Software</h3>
+                        <p>Advanced robot simulation and control software for optimal performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Can Do Section -->
+        <section id="what-we-can-do-section" class="section">
+            <div class="section-content">
+                <div class="flex-container reverse">
+                    <div class="flex-item">
+                        <img src="images/aboutus - 2.jpg" alt="Autobots Vision" class="rounded-image">
+                    </div>
+                    <div class="flex-item">
+                        <div class="info-box">
+                            <div class="section-header">
+                                <i class="fas fa-lightbulb"></i>
+                                <h2>What Can We Do For You?</h2>
+                            </div>
+                            <p>
+                                Committed to do our part in achieving "Skilled India", we seek to combine our expertise in the industry and emerging technologies in the market to benefit our customers.
+                            </p>
+                            <p>
+                                At AUTOBOTS, our vision is to meet the current skill demand, anticipate tomorrow's needs and to equip students & industries accordingly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+                
+
+    <script src="home.js"></script>
+</body>
+</html>
