@@ -8,74 +8,82 @@
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-logo">
-            <img src="images/logo.png" alt="RoboTech">
-        </div>
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="images/logo.png" alt="Robotics Logo" class="logo-img">
+                </a>
 
-        <div class="nav-links">
-            <a href="#" class="nav-item"><i class="fas fa-home"></i> Home</a>
-            
-            <div class="dropdown">
-                <a href="#" class="nav-item"><i class="fas fa-robot"></i> Products</a>
-                <div class="dropdown-content">
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-people-arrows"></i>
-                        Cobots
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-industry"></i>
-                        Industrial Robots
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-grip-lines"></i>
-                        Electrical Grippers
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-hand-paper"></i>
-                        Anthropomorphic Grippers
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-book-open"></i>
-                        Educational Robots
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="fas fa-code"></i>
-                        Simulation Software
-                    </a>
+                <!-- Desktop Navigation -->
+                <div class="nav-desktop">
+                    <a href="/" class="nav-item active">Home</a>
+                    
+                    <!-- Products Dropdown -->
+                    <div class="dropdown">
+                        <button class="nav-item dropdown-toggle">Products</button>
+                        
+                        <div class="dropdown-content">
+                            <a href="/products/cobots" class="dropdown-item">Cobots</a>
+                            <a href="/products/industrial-robots" class="dropdown-item">Industrial Robots</a>
+                            <a href="/products/electrical-gripper" class="dropdown-item">Electrical Gripper</a>
+                            <a href="/products/anthropomorphic-grippers" class="dropdown-item">Anthropomorphic Grippers</a>
+                            <a href="/products/educational-robots" class="dropdown-item">Educational Robots</a>
+                            <a href="/products/simulation-software" class="dropdown-item">Simulation Software</a>
+                        </div>
+                    </div>
+                    
+                    <a href="/training" class="nav-item">Training</a>
+                    <a href="/downloads" class="nav-item">Downloads</a>
+                    <a href="/contact" class="nav-item">Contact Us</a>
+                    <a href="/blog" class="nav-item">Blog</a>
                 </div>
-            </div>
 
-            <a href="#" class="nav-item"><i class="fas fa-chalkboard-teacher"></i> Training</a>
-            <a href="#" class="nav-item"><i class="fas fa-download"></i> Downloads</a>
-            <a href="#" class="nav-item"><i class="fas fa-phone-alt"></i> Contact Us</a>
-            <a href="#" class="nav-item"><i class="fas fa-blog"></i> Blog</a>
+                <!-- Mobile Menu Button -->
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open menu">
+                    <span class="mobile-toggle-icon"></span>
+                </button>
+            </nav>
         </div>
-        <div class="hamburger">☰</div>
-    </nav>
+    </header>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
         <div class="mobile-header">
-            <img src="images/logo.png" alt="RoboTech" width="120">
-            <div class="close-menu">×</div>
+            <div class="mobile-logo">
+                <img src="images/logo.png" alt="Robotics Logo" class="mobile-logo-img">
+            </div>
+            <button class="mobile-close" id="mobile-close" aria-label="Close menu"></button>
         </div>
-        <a href="#" class="mobile-nav-item"><i class="fas fa-home"></i> Home</a>
         
-        <div class="mobile-nav-item"><i class="fas fa-robot"></i> Products</div>
-        <div class="mobile-dropdown">
-            <a href="#" class="mobile-dropdown-item">Cobots</a>
-            <a href="#" class="mobile-dropdown-item">Industrial Robots</a>
-            <a href="#" class="mobile-dropdown-item">Electrical Grippers</a>
-            <a href="#" class="mobile-dropdown-item">Anthropomorphic Grippers</a>
-            <a href="#" class="mobile-dropdown-item">Educational Robots</a>
-            <a href="#" class="mobile-dropdown-item">Simulation Software</a>
+        <div class="mobile-body">
+            <nav class="mobile-nav">
+                <a href="/" class="mobile-nav-item">Home</a>
+                
+                <div class="mobile-nav-wrapper">
+                    <div class="mobile-nav-item" id="products-toggle">
+                        Products
+                        <span class="mobile-arrow" id="products-arrow"></span>
+                    </div>
+                    
+                    <div class="mobile-dropdown" id="products-dropdown">
+                        <a href="/products/cobots" class="mobile-dropdown-item">Cobots</a>
+                        <a href="/products/industrial-robots" class="mobile-dropdown-item">Industrial Robots</a>
+                        <a href="/products/electrical-gripper" class="mobile-dropdown-item">Electrical Gripper</a>
+                        <a href="/products/anthropomorphic-grippers" class="mobile-dropdown-item">Anthropomorphic Grippers</a>
+                        <a href="/products/educational-robots" class="mobile-dropdown-item">Educational Robots</a>
+                        <a href="/products/simulation-software" class="mobile-dropdown-item">Simulation Software</a>
+                    </div>
+                </div>
+                
+                <a href="/training" class="mobile-nav-item">Training</a>
+                <a href="/downloads" class="mobile-nav-item">Downloads</a>
+                <a href="/contact" class="mobile-nav-item">Contact Us</a>
+                <a href="/blog" class="mobile-nav-item">Blog</a>
+            </nav>
         </div>
-
-        <a href="#" class="mobile-nav-item"><i class="fas fa-chalkboard-teacher"></i> Training</a>
-        <a href="#" class="mobile-nav-item"><i class="fas fa-download"></i> Downloads</a>
-        <a href="#" class="mobile-nav-item"><i class="fas fa-phone-alt"></i> Contact Us</a>
-        <a href="#" class="mobile-nav-item"><i class="fas fa-blog"></i> Blog</a>
     </div>
 
     <!--Hero Section-->
@@ -97,7 +105,7 @@
         <!--About Us-->
         <section id="who-we-are-section" class="section">
             <div class="section-content">
-                <h1 class="section-title">ABOUT <span>US</span></h1>
+                <h1 class="section-title">ABOUT US</h1>
                 <div class="flex-container">
                     <div class="flex-item">
                         <div class="info-box">

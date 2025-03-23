@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autobots - Loading</title>
+    <title>Autobots - Initializing</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
+        :root {
+            --primary: #007bff;
+            --secondary: #00bfff;
+            --accent: #00ff88;
+            --bg: #f8f9fa;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,11 +21,18 @@
         }
 
         body {
-            background: #f4f4f4; /* Light background */
+            background: var(--bg);
             font-family: 'Orbitron', sans-serif;
             height: 100vh;
             overflow: hidden;
-            color: #333; /* Dark text for contrast */
+            color: #333;
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;     /* Firefox */
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        body::-webkit-scrollbar {
+            display: none;
         }
 
         .container {
@@ -25,126 +40,225 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100%;
+            height: 100vh;
             position: relative;
+            perspective: 1000px;
+        }
+
+        .hexagon-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 100%, var(--primary) 4px, transparent 0),
+                radial-gradient(circle at 0, var(--primary) 4px, transparent 0);
+            background-size: 60px 60px;
+            background-position: 0 0;
+            animation: gridMove 20s linear infinite;
         }
 
         .logo-container {
             position: relative;
+            transform-style: preserve-3d;
             margin-bottom: 4rem;
         }
 
         .autobot-logo {
-            width: 550px; /* Adjust size as needed */
-            height: 150px; /* Adjust size as needed */
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 15px rgba(0, 123, 255, 0.5)); /* Blue shadow */
+            width: 550px;
+            height: 150px;
+            filter: drop-shadow(0 0 20px rgba(0, 123, 255, 0.6));
         }
 
         .loading-text {
             font-size: 2.5rem;
             letter-spacing: 4px;
             margin-bottom: 2rem;
+            opacity: 0;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .progress-container {
             position: relative;
-            text-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Blue shadow */
+            width: 300px;
+            height: 4px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 2px;
+            overflow: visible;
         }
 
         .progress-bar {
-            width: 300px;
-            height: 4px;
-            background: rgba(0, 0, 0, 0.1); /* Light gray background */
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
-            overflow: hidden;
             position: relative;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #007bff, #00bfff); /* Blue gradient */
-            width: 0%; /* Start at 0% */
-            border-radius: 2px;
-            transition: width 0.1s linear; /* Smooth transition for width changes */
+        .progress-glow {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+            filter: blur(5px);
+            opacity: 0.7;
         }
 
-        .circuit-pattern {
+        .percentage {
+            position: absolute;
+            right: -40px;
+            top: -25px;
+            font-size: 1rem;
+            color: var(--primary);
+        }
+
+        .robot-parts {
             position: absolute;
             width: 100%;
             height: 100%;
-            opacity: 0.1;
-            background-image: 
-                linear-gradient(to right, #007bff 1px, transparent 1px),
-                linear-gradient(to bottom, #007bff 1px, transparent 1px);
-            background-size: 20px 20px;
+            pointer-events: none;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .scan-line {
+        .robot-part {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom,
-                transparent 50%,
-                rgba(0, 123, 255, 0.05) 51%, /* Light blue scan line */
-                transparent 52%);
-            animation: scan 4s linear infinite;
+            background: linear-gradient(45deg, var(--primary), transparent);
+            border-radius: 50%;
+            opacity: 0;
         }
 
-        @keyframes scan {
-            0% { transform: translateY(-100%); }
-            100% { transform: translateY(100%); }
+        @keyframes gridMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 60px 60px; }
         }
 
-        .loading-dots::after {
-            content: '';
-            animation: dots 1.5s infinite steps(4);
-        }
-
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60% { content: '...'; }
-            80%, 100% { content: ''; }
+        .loading-complete {
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
     </style>
 </head>
 <body>
-    <div class="circuit-pattern"></div>
-    <div class="scan-line"></div>
+    <div class="hexagon-grid"></div>
     <div class="container">
+        <div class="robot-parts"></div>
         <div class="logo-container">
-            <!-- Replace the SVG with a PNG image -->
             <img src="images/logo.png" alt="Autobots Logo" class="autobot-logo">
         </div>
-        <h1 class="loading-text">INITIALIZING SYSTEMS<span class="loading-dots"></span></h1>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
+        <h1 class="loading-text">SYSTEM INITIALIZATION</h1>
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-glow"></div>
+                <div class="percentage">0%</div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Progress bar animation
-        const progressFill = document.querySelector('.progress-fill');
-        const duration = 3000; // 3 seconds
-        const interval = 10; // Update every 10ms for smooth animation
-        const increment = (interval / duration) * 100; // Calculate width increment per interval
+        document.addEventListener('DOMContentLoaded', () => {
+            // GSAP Timeline
+            const tl = gsap.timeline();
+            const TOTAL_DURATION = 3.5; // Set total duration to 3.5 seconds
+            
+            // Initial animations
+            tl.from('.logo-container', {
+                duration: 0.8,
+                y: -100,
+                opacity: 0,
+                ease: 'elastic.out(1, 0.5)'
+            })
+            .to('.loading-text', {
+                duration: 0.5,
+                opacity: 1,
+                y: 0,
+                ease: 'power2.out'
+            }, '-=0.5');
 
-        let width = 0;
+            // Progress bar animation
+            const progressBar = document.querySelector('.progress-bar');
+            const percentage = document.querySelector('.percentage');
+            let progress = 0;
+            const updateInterval = (TOTAL_DURATION * 1000) / 200; // Divide duration into 200 steps
 
-        const progressInterval = setInterval(() => {
-            width += increment;
-            progressFill.style.width = width + '%';
+            const updateProgress = () => {
+                if (progress < 100) {
+                    progress += 0.5;
+                    progressBar.style.width = `${progress}%`;
+                    percentage.textContent = `${Math.round(progress)}%`;
 
-            // Stop the interval when the progress bar reaches 100%
-            if (width >= 100) {
-                clearInterval(progressInterval);
-                // Redirect to login.html after the progress bar is filled
-                window.location.href = 'home.html';
-            }
-        }, interval);
+                    if (progress >= 100) {
+                        gsap.to('.container', {
+                            duration: 0.3,
+                            opacity: 0,
+                            scale: 0.8,
+                            onComplete: () => {
+                                window.location.href = 'home.html';
+                            }
+                        });
+                    } else {
+                        setTimeout(updateProgress, updateInterval);
+                    }
+                }
+            };
+
+            // Start progress animation
+            setTimeout(updateProgress, updateInterval);
+
+            // Create floating robot parts
+            const createRobotParts = () => {
+                const container = document.querySelector('.robot-parts');
+                for(let i = 0; i < 20; i++) {
+                    const part = document.createElement('div');
+                    part.className = 'robot-part';
+                    part.style.width = Math.random() * 30 + 10 + 'px';
+                    part.style.height = part.style.width;
+                    part.style.left = Math.random() * 100 + '%';
+                    part.style.top = Math.random() * 100 + '%';
+                    container.appendChild(part);
+
+                    gsap.to(part, {
+                        duration: Math.random() * 3 + 2,
+                        opacity: Math.random() * 0.5,
+                        x: Math.random() * 100 - 50,
+                        y: Math.random() * 100 - 50,
+                        repeat: -1,
+                        yoyo: true,
+                        ease: 'sine.inOut'
+                    });
+                }
+            };
+
+            createRobotParts();
+
+            // Add hover effect to logo
+            const logo = document.querySelector('.autobot-logo');
+            logo.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = logo.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+
+                gsap.to('.logo-container', {
+                    duration: 0.5,
+                    rotationY: x * 10,
+                    rotationX: -y * 10,
+                    ease: 'power2.out'
+                });
+            });
+
+            logo.addEventListener('mouseleave', () => {
+                gsap.to('.logo-container', {
+                    duration: 0.5,
+                    rotationY: 0,
+                    rotationX: 0,
+                    ease: 'power2.out'
+                });
+            });
+        });
     </script>
 </body>
 </html>

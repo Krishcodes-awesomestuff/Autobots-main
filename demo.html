@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autobots - Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="home.css">
+</head>
+<style>
+    :root {
+  --primary: #0057ff;
+  --primary-dark: #0046cc;
+  --primary-light: #e6f0ff;
+  --text-dark: #1a202c;
+  --text-medium: #4a5568;
+  --text-light: #718096;
+  --background: #ffffff;
+  --background-alt: #f7fafc;
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --radius: 8px;
+  --transition: all 0.25s ease;
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: var(--background);
+  color: var(--text-dark);
+  min-height: 100vh;
+  line-height: 1.6;
+  padding-top: 80px;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header & Navbar */
+.header {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  width: 100%;
+  background: var(--background);
+  z-index: 1000;
+  transition: var(--transition);
+  height: 80px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header.scrolled {
+  height: 70px;
+  box-shadow: var(--shadow-md);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-img {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Desktop Navigation */
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-medium);
+  border-radius: var(--radius);
+  transition: var(--transition);
+  position: relative;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.nav-item:hover {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+.nav-item.active {
+  color: var(--primary);
+  background: var(--primary-light);
+}
+
+/* Dropdown Menus */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dropdown-toggle::after {
+  content: '';
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: 0.3em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: var(--transition);
+}
+
+.dropdown:hover .dropdown-toggle::after {
+  transform: rotate(-135deg);
+}
+
+.dropdown-content {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: var(--background);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius);
+  padding: 0.5rem 0;
+  min-width: 240px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: var(--transition);
+  z-index: 100;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-medium);
+  transition: var(--transition);
+  font-size: 0.85rem;
+}
+
+.dropdown-item:hover {
+  background: var(--background-alt);
+  color: var(--primary);
+}
+
+/* Mobile Menu Button */
+.mobile-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: var(--text-medium);
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  position: relative;
+}
+
+.mobile-toggle:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.mobile-toggle-icon,
+.mobile-toggle-icon::before,
+.mobile-toggle-icon::after {
+  width: 20px;
+  height: 2px;
+  background-color: currentColor;
+  transition: var(--transition);
+}
+
+.mobile-toggle-icon {
+  position: relative;
+  display: inline-block;
+}
+
+.mobile-toggle-icon::before,
+.mobile-toggle-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+.mobile-toggle-icon::before {
+  top: -6px;
+}
+
+.mobile-toggle-icon::after {
+  bottom: -6px;
+}
+
+.mobile-toggle.active .mobile-toggle-icon {
+  background-color: transparent;
+}
+
+.mobile-toggle.active .mobile-toggle-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.mobile-toggle.active .mobile-toggle-icon::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+}
+
+/* Mobile Menu */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  z-index: 1001;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -320px;
+  width: 320px;
+  height: 100vh;
+  background: var(--background);
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  z-index: 1002;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-logo {
+  display: flex;
+  align-items: center;
+}
+
+.mobile-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-close {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-medium);
+  background: var(--background-alt);
+  transition: var(--transition);
+  position: relative;
+}
+
+.mobile-close:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.mobile-close::before,
+.mobile-close::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.mobile-close::before {
+  transform: rotate(45deg);
+}
+
+.mobile-close::after {
+  transform: rotate(-45deg);
+}
+
+.mobile-body {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  color: var(--text-medium);
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.mobile-nav-item:hover {
+  color: var(--primary);
+}
+
+.mobile-dropdown {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  background-color: var(--background-alt);
+}
+
+.mobile-dropdown.active {
+  max-height: 500px;
+}
+
+.mobile-dropdown-item {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--text-medium);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+
+.mobile-dropdown-item:hover {
+  color: var(--primary);
+}
+
+.mobile-arrow {
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: var(--transition);
+}
+
+.mobile-arrow.active {
+  transform: rotate(-135deg);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .nav-desktop {
+      display: none;
+  }
+
+  .mobile-toggle {
+      display: flex;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+      height: 70px;
+  }
+  
+  .logo-img {
+      height: 32px;
+  }
+}
+/*Hero section*/
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Style the scroll indicator */
+/* Update the scroll indicator positioning */
+.scroll-indicator {
+    position: absolute;  /* Change from fixed to absolute */
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Make sure the hero section has proper positioning */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    position: relative;
+}
+
+.wheel {
+    width: 4px;
+    height: 8px;
+    background: #ffffff;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+    animation: scroll 1.5s infinite;
+}
+
+.arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: rotate(45deg);
+    margin: 10px auto;
+    animation: arrow 1.5s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+}
+
+@keyframes arrow {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translate(-5px, -5px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+}
+    
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #ffffff;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    max-width: 800px;
+    margin: 0 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.cta-primary, .cta-secondary {
+    padding: 15px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.cta-primary {
+    background: #007bff;
+    color: white;
+    border: 2px solid #007bff;
+}
+
+.cta-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+.cta-primary:hover {
+    background: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+.cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+}
+
+/*About US*/
+
+/* Typography */
+  h1,
+  h2,
+  h3 {
+    color: #000;
+    font-weight: bold;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+  }
+  
+  h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+    .section-title {
+        text-align: center;
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: var(--text);
+        position: relative;
+        padding-bottom: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+    }
+  
+    .section-title span {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        position: relative;
+    }
+  
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+    }
+  
+    .section-title::before {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 15px;
+        height: 12px;
+        background: var(--primary);
+        border-radius: 6px;
+    }
+
+  /* Section Styles */
+  .section {
+    padding: 4rem 1rem;
+  }
+  
+  .section-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  
+  .section-header i {
+    font-size: 1.5rem;
+    color: #4299e1; /* sky blue */
+  }
+  
+  .centered {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .section-intro {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+  
+  .gray-bg {
+    background-color: #f9fafb;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    position: relative;
+    height: 300px;
+    background-image: url("https://via.placeholder.com/1200x400");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .hero-section h1 {
+    color: #fff;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  /* Flex Container */
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .flex-item {
+    width: 100%;
+  }
+  
+  /* Info Box */
+  .info-box {
+    background-color: #e0f7ff; /* light sky blue */
+    padding: 2rem;
+    border-radius: 0.5rem;
+    height: 100%;
+  }
+  
+  /* Card Grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .card {
+    background-color: #e0f7ff; /* light sky blue */
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-icon {
+    background-color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+  }
+  
+  .card-icon i {
+    font-size: 1.5rem;
+    color: #4299e1; /* sky blue */
+  }
+  
+  /* Images */
+  .rounded-image {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* CTA Section */
+  .cta-section {
+    background-color: #4299e1; /* sky blue */
+    padding: 4rem 1rem;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .cta-section h2 {
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .cta-section p {
+    color: #fff;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+  }
+  
+  .cta-button {
+    background-color: #fff;
+    color: #4299e1;
+    font-weight: 600;
+    padding: 0.75rem 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: #f0f9ff;
+  }
+  
+  /* Responsive Styles */
+  @media (min-width: 768px) {
+    .hero-section {
+      height: 400px;
+    }
+  
+    h1 {
+      font-size: 3rem;
+    }
+  
+    .flex-container {
+      flex-direction: row;
+    }
+  
+    .flex-item {
+      width: 50%;
+    }
+  
+    .flex-container.reverse {
+      flex-direction: row-reverse;
+    }
+  
+    .card-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .card-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+</style>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <!-- Logo -->
+                <a href="/" class="logo">
+                    <img src="images/logo.png" alt="Robotics Logo" class="logo-img">
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="nav-desktop">
+                    <a href="/" class="nav-item active">Home</a>
+                    
+                    <!-- Products Dropdown -->
+                    <div class="dropdown">
+                        <button class="nav-item dropdown-toggle">Products</button>
+                        
+                        <div class="dropdown-content">
+                            <a href="/products/cobots" class="dropdown-item">Cobots</a>
+                            <a href="/products/industrial-robots" class="dropdown-item">Industrial Robots</a>
+                            <a href="/products/electrical-gripper" class="dropdown-item">Electrical Gripper</a>
+                            <a href="/products/anthropomorphic-grippers" class="dropdown-item">Anthropomorphic Grippers</a>
+                            <a href="/products/educational-robots" class="dropdown-item">Educational Robots</a>
+                            <a href="/products/simulation-software" class="dropdown-item">Simulation Software</a>
+                        </div>
+                    </div>
+                    
+                    <a href="/training" class="nav-item">Training</a>
+                    <a href="/downloads" class="nav-item">Downloads</a>
+                    <a href="/contact" class="nav-item">Contact Us</a>
+                    <a href="/blog" class="nav-item">Blog</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open menu">
+                    <span class="mobile-toggle-icon"></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-header">
+            <div class="mobile-logo">
+                <img src="images/logo.png" alt="Robotics Logo" class="mobile-logo-img">
+            </div>
+            <button class="mobile-close" id="mobile-close" aria-label="Close menu"></button>
+        </div>
+        
+        <div class="mobile-body">
+            <nav class="mobile-nav">
+                <a href="/" class="mobile-nav-item">Home</a>
+                
+                <div class="mobile-nav-wrapper">
+                    <div class="mobile-nav-item" id="products-toggle">
+                        Products
+                        <span class="mobile-arrow" id="products-arrow"></span>
+                    </div>
+                    
+                    <div class="mobile-dropdown" id="products-dropdown">
+                        <a href="/products/cobots" class="mobile-dropdown-item">Cobots</a>
+                        <a href="/products/industrial-robots" class="mobile-dropdown-item">Industrial Robots</a>
+                        <a href="/products/electrical-gripper" class="mobile-dropdown-item">Electrical Gripper</a>
+                        <a href="/products/anthropomorphic-grippers" class="mobile-dropdown-item">Anthropomorphic Grippers</a>
+                        <a href="/products/educational-robots" class="mobile-dropdown-item">Educational Robots</a>
+                        <a href="/products/simulation-software" class="mobile-dropdown-item">Simulation Software</a>
+                    </div>
+                </div>
+                
+                <a href="/training" class="mobile-nav-item">Training</a>
+                <a href="/downloads" class="mobile-nav-item">Downloads</a>
+                <a href="/contact" class="mobile-nav-item">Contact Us</a>
+                <a href="/blog" class="mobile-nav-item">Blog</a>
+            </nav>
+        </div>
+    </div>
+
+    <!--Hero Section-->
+        <section class="hero">
+            <div class="video-container">
+                <video autoplay muted loop id="heroVideo" playsinline>
+                    <source src="demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrow"></div>
+            </div>
+        </section>
+
+        <!--About Us-->
+        <section id="who-we-are-section" class="section">
+            <div class="section-content">
+                <h1 class="section-title">ABOUT US</h1>
+                <div class="flex-container">
+                    <div class="flex-item">
+                        <div class="info-box">
+                            <div class="section-header">
+                                <i class="fas fa-building"></i>
+                                <h2>Who Are We?</h2>
+                            </div>
+                            <p>
+                                Autobots is a wing of M/s.Mayura's Industrial Services (MIS) which has a rich experience of over 20 years in the Indian Automation Industry. Mayuras is Galaxy System Integrator for M/s. Schneider Electric & distributor for M/s.Bonfiglioli for the past 20 years. We have the pleasure of introducing Doosan robotics in India this year.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex-item">
+                        <img src="images/aboutus - 1.jpg" alt="Autobots Team" class="rounded-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Have Section -->
+        <section id="what-we-have-section" class="section gray-bg">
+            <div class="section-content">
+                <div class="section-header centered">
+                    <i class="fas fa-box"></i>
+                    <h2>What Do We Have?</h2>
+                </div>
+                <p class="section-intro">
+                    We have with us a wide range of products in our portfolio to meet the needs of all customers.
+                </p>
+                
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <h3>6-Axis Cobots</h3>
+                        <p>Advanced 6-axis collaborative robots by Doosan Robotics designed for precision and safety.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-computer"></i>
+                        </div>
+                        <h3>Desktop Robots</h3>
+                        <p>Compact desktop robots perfect for education and light industry applications.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <h3>Production Line Accessories</h3>
+                        <p>Accessories to simulate and enhance production line efficiency and automation.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Collaborative Robots</h3>
+                        <p>Robots designed to work alongside humans safely and efficiently in various environments.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-grip-vertical"></i>
+                        </div>
+                        <h3>Wide Range of Grippers</h3>
+                        <p>Versatile grippers for different applications and precision requirements.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Simulation & Control Software</h3>
+                        <p>Advanced robot simulation and control software for optimal performance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Can Do Section -->
+        <section id="what-we-can-do-section" class="section">
+            <div class="section-content">
+                <div class="flex-container reverse">
+                    <div class="flex-item">
+                        <img src="images/aboutus - 2.jpg" alt="Autobots Vision" class="rounded-image">
+                    </div>
+                    <div class="flex-item">
+                        <div class="info-box">
+                            <div class="section-header">
+                                <i class="fas fa-lightbulb"></i>
+                                <h2>What Can We Do For You?</h2>
+                            </div>
+                            <p>
+                                Committed to do our part in achieving "Skilled India", we seek to combine our expertise in the industry and emerging technologies in the market to benefit our customers.
+                            </p>
+                            <p>
+                                At AUTOBOTS, our vision is to meet the current skill demand, anticipate tomorrow's needs and to equip students & industries accordingly.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+    // Elements
+    const header = document.getElementById('header');
+    const mobileToggle = document.getElementById('mobile-toggle');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const productsToggle = document.getElementById('products-toggle');
+    const productsDropdown = document.getElementById('products-dropdown');
+    const productsArrow = document.getElementById('products-arrow');
+    
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+        mobileToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        mobileOverlay.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    // Event listeners
+    mobileToggle.addEventListener('click', toggleMobileMenu);
+    mobileClose.addEventListener('click', toggleMobileMenu);
+    mobileOverlay.addEventListener('click', toggleMobileMenu);
+    
+    // Handle mobile products dropdown
+    productsToggle.addEventListener('click', function() {
+        productsDropdown.classList.toggle('active');
+        productsArrow.classList.toggle('active');
+    });
+    
+    // Scroll effect for header
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+    
+    // Close mobile menu on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 1024 && mobileMenu.classList.contains('active')) {
+            toggleMobileMenu();
+        }
+    });
+});
+
+//Hero carousel
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Create scroll-based timeline for the hero section
+    const heroTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".hero",
+            start: "top top",
+            end: "bottom top",
+            scrub: 1
+        }
+    });
+
+    heroTl.to(".video-container", {
+        scale: 1.1,
+        opacity: 0.5,
+        duration: 1
+    });
+
+    // Parallax effect for sections
+    gsap.utils.toArray('.section').forEach(section => {
+        gsap.to(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "top center",
+                end: "bottom center",
+                scrub: 1
+            },
+            y: 50,
+            opacity: 0.8
+        });
+    });
+
+    // Enhanced card animations with stagger and scroll
+    const cardTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".card-grid",
+            start: "top 80%",
+            end: "bottom 60%",
+            scrub: 0.5
+        }
+    });
+
+    cardTl.from(".card", {
+        y: 100,
+        opacity: 0,
+        duration: 0.5,
+        stagger: {
+            amount: 0.8,
+            from: "start"
+        }
+    });
+
+    // Keep your existing animations but update their scroll behavior
+    gsap.from('.section-title', {
+        scrollTrigger: {
+            trigger: '.section-title',
+            start: 'top 80%',
+            end: 'bottom 60%',
+            scrub: 1
+        },
+        y: 100,
+        opacity: 0,
+        duration: 1
+    });
+
+    // Flex Container Items Animation
+    gsap.utils.toArray('.flex-item').forEach((item, i) => {
+        gsap.from(item, {
+            scrollTrigger: {
+                trigger: item,
+                start: 'top 75%',
+                toggleActions: 'play none none reverse'
+            },
+            x: i % 2 === 0 ? -100 : 100,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out'
+        });
+    });
+
+    // Cards Animation
+    gsap.utils.toArray('.card').forEach((card, i) => {
+        gsap.from(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: 'top 85%',
+                toggleActions: 'play none none reverse'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            delay: i * 0.1,
+            ease: 'power2.out'
+        });
+    });
+
+    // Section Headers Animation
+    gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header, {
+            scrollTrigger: {
+                trigger: header,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'back.out(1.7)'
+        });
+    });
+
+    // Keep your existing scroll indicator code
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    scrollIndicator.addEventListener('click', function() {
+        const whoWeAreSection = document.getElementById('who-we-are-section');
+        whoWeAreSection.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+//About Us
+
+// Smooth scrolling for anchor links
+document.addEventListener("DOMContentLoaded", () => {
+    // Add animation to cards when they come into view
+    const cards = document.querySelectorAll(".card")
+  
+    // Simple intersection observer to add animation when elements come into view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = 1
+            entry.target.style.transform = "translateY(0)"
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+      },
+    )
+  
+    // Initially set cards to be slightly below their position and transparent
+    cards.forEach((card) => {
+      card.style.opacity = 0
+      card.style.transform = "translateY(20px)"
+      card.style.transition = "opacity 0.5s ease, transform 0.5s ease"
+      observer.observe(card)
+    })
+  
+    // Add click event to CTA button
+    const ctaButton = document.querySelector(".cta-button")
+    if (ctaButton) {
+      ctaButton.addEventListener("click", () => {
+        // Replace with actual contact form functionality or redirect
+        alert("Contact form will open here. Replace this with your actual contact functionality.")
+      })
+    }
+  })
+
+</script>
+</body>
+</html>
