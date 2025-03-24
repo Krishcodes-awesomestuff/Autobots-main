@@ -726,82 +726,173 @@ button {
   }
 
   /*Patners*/
+  #partners-and-clients {
+      background: linear-gradient(to right, #f8f9fa, #ffffff, #f8f9fa);
+      padding: 60px 0;
+      overflow: hidden;
+  }
+
+  .section-divider {
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--primary), transparent);
+      margin: 60px 0;
+      opacity: 0.3;
+  }
+
   /* Partners Section */
   .logos {
-    background-color: #f9fafb;
-      overflow: hidden;
-      position: relative;
-      padding: 40px 0;
       width: 100%;
+      overflow: hidden;
+      padding: 40px 0;
+      position: relative;
   }
-  
-  .logos:before,
-  .logos:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      width: 200px;
-      height: 100%;
-      z-index: 2;
-  }
-  
-  .logos:before {
-      left: 0;
-      background: linear-gradient(to right, rgb(255, 255, 255), transparent);
-  }
-  
-  .logos:after {
-      right: 0;
-      background: linear-gradient(to left, rgb(255, 255, 255), transparent);
-  }
-  
+
   .logos-slide {
-      display: inline-flex;
-      animation: slide 30s linear infinite;
-      align-items: center;
+      display: flex;
+      gap: 40px;
+      animation: slideLeft 10s linear infinite; /* Increased speed from 25s to 15s */
   }
-  
+
+  /* Mobile adjustments for partners */
+  @media (max-width: 768px) {
+      .logos-slide {
+          animation: slideLeft 12s linear infinite; /* Faster on mobile */
+      }
+  }
+
+  @media (max-width: 480px) {
+      .logos-slide {
+          animation: slideLeft 10s linear infinite; /* Even faster on smaller screens */
+      }
+  }
+
+  /* Partners Section - keeping grayscale */
   .partner-box {
-      width: 180px;
+      min-width: 180px;
       height: 90px;
       object-fit: contain;
-      filter: grayscale(100%);
       opacity: 0.7;
-      transition: all 0.4s ease-in-out;
-      margin: 0 40px;
+      transition: all 0.3s ease;
   }
-  
+
   .partner-box:hover {
-      filter: grayscale(0%);
       opacity: 1;
       transform: scale(1.1);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
-  
-  @keyframes slide {
-      from {
-          transform: translateX(0);
-      }
-      to {
-          transform: translateX(calc(-180px * 7 - 80px * 7)); /* Width of images * number of images + total margin */
+  /* Clients Section - removed grayscale */
+  .client-logo-container {
+      width: 100%;
+      overflow: hidden;
+      padding: 40px 0;
+      position: relative;
+  }
+
+  .client-logo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+  }
+
+  .client-logo-row {
+      display: flex;
+      gap: 40px;
+      width: max-content;
+  }
+
+  .client-logo {
+      min-width: 180px;
+      height: 90px;
+      object-fit: contain;
+      opacity: 0.9;
+      transition: all 0.3s ease;
+  }
+
+  .client-logo:hover {
+      opacity: 1;
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+      .client-logo {
+          min-width: 140px;
+          height: 70px;
+          opacity: 1;
       }
   }
-  
+
+  /* Animations */
+  @keyframes slideLeft {
+      from { transform: translateX(0); }
+      to { transform: translateX(calc(-50% - 20px)); }
+  }
+
+  @keyframes slideRight {
+      from { transform: translateX(calc(-50% - 20px)); }
+      to { transform: translateX(0); }
+  }
+
+  .row-1 { animation: slideLeft 35s linear infinite; }
+  .row-2 { animation: slideRight 35s linear infinite; }
+  .row-3 { animation: slideLeft 35s linear infinite; }
+  .row-4 { animation: slideRight 35s linear infinite; }
+
+  /* Animation Pause on Hover */
+  .logos:hover .logos-slide,
+  .client-logo-row:hover {
+      animation-play-state: paused;
+  }
+
+  /* Responsive Design for Partners and Clients */
   @media (max-width: 768px) {
-      .logos {
+      #partners-and-clients {
+          padding: 40px 0;
+      }
+  
+      .client-logo-container {
           padding: 20px 0;
       }
   
-      .logos-slide {
-          gap: 40px;
-          padding: 10px 20px;
+      .client-logo-grid {
+          gap: 30px;
       }
   
-      .partner-box {
-          width: 140px;
-          height: 70px;
-          margin: 0 20px;
-          filter: grayscale(0%);
-          opacity: 0.9;
+      .client-logo-row {
+          gap: 20px;
       }
+  
+      .client-logo {
+          min-width: 120px;
+          height: 60px;
+      }
+  
+      /* Animation speed adjustment for mobile */
+      .row-1 { animation: slideLeft 25s linear infinite; }
+      .row-2 { animation: slideRight 25s linear infinite; }
+      .row-3 { animation: slideLeft 25s linear infinite; }
+      .row-4 { animation: slideRight 25s linear infinite; }
+  }
+  
+  /* Small mobile devices */
+  @media (max-width: 480px) {
+      .client-logo {
+          min-width: 100px;
+          height: 50px;
+      }
+  
+      .client-logo-grid {
+          gap: 20px;
+      }
+  
+      .client-logo-row {
+          gap: 15px;
+      }
+  
+      /* Faster animation for smaller screens */
+      .row-1 { animation: slideLeft 20s linear infinite; }
+      .row-2 { animation: slideRight 20s linear infinite; }
+      .row-3 { animation: slideLeft 20s linear infinite; }
+      .row-4 { animation: slideRight 20s linear infinite; }
   }
