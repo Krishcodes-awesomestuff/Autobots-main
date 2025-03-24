@@ -78,6 +78,63 @@
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        /* Add these responsive styles */
+        @media (max-width: 768px) {
+            .autobot-logo {
+                width: 80vw;
+                height: auto;
+                max-width: 450px;
+            }
+
+            .loading-text {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+                padding: 0 20px;
+            }
+
+            .progress-container {
+                width: 80vw;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .autobot-logo {
+                width: 90vw;
+                max-width: 350px;
+            }
+
+            .loading-text {
+                font-size: 1.4rem;
+                letter-spacing: 1px;
+            }
+
+            .percentage {
+                font-size: 0.9rem;
+                right: -35px;
+            }
+
+            .robot-part {
+                display: none; /* Hide floating parts on very small screens */
+            }
+        }
+
+        @media (max-height: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .autobot-logo {
+                height: auto;
+                width: 60vw;
+            }
+
+            .loading-text {
+                margin-bottom: 1rem;
+            }
         }
 
         .progress-container {
