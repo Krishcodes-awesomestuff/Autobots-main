@@ -820,6 +820,21 @@ button {
     border-radius: 0.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
+    .logos-slide {
+      display: inline-flex;
+      animation: 35s slide infinite linear;
+      gap: 40px;
+      padding-right: 40px; /* Add padding equal to gap to maintain spacing between sets */
+  }
+  .partner-box {
+      width: 200px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 8px;
+      transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+      filter: grayscale(100%);
+      margin-right: 0; /* Remove any default margins */
+}
   
   /* CTA Section */
   .cta-section {
@@ -881,6 +896,16 @@ button {
     .card-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+    .partner-box {
+        filter: grayscale(0%);
+        width: 150px;
+        height: 75px;
+    }
+    
+    .logos-slide {
+        gap: 20px;
+        padding-right: 20px; /* Adjust padding for mobile */
+    }
   }
   
   @media (min-width: 1024px) {
@@ -888,6 +913,78 @@ button {
       grid-template-columns: repeat(3, 1fr);
     }
   }
+  @keyframes slide {
+                from {
+                    transform: translateX(0);
+                }
+                to {
+                    transform: translateX(-100%);
+                }
+            }
+
+            .logos {
+                overflow: hidden;
+                padding: 60px 0;
+                background: white;
+                white-space: nowrap;
+                position: relative;
+            }
+
+            .logos:before,
+            .logos:after {
+                position: absolute;
+                top: 0;
+                width: 250px;
+                height: 100%;
+                content: "";
+                z-index: 2;
+            }
+
+            .logos:before {
+                left: 0;
+                background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+            }
+
+            .logos:after {
+                right: 0;
+                background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+            }
+
+            .logos:hover .logos-slide {
+                animation-play-state: paused;
+            }
+
+            .logos-slide {
+                display: inline-flex;
+                animation: 35s slide infinite linear;
+                gap: 40px;
+            }
+
+            .partner-box {
+                width: 200px;
+                height: 100px;
+                object-fit: contain;
+                border-radius: 8px;
+                transition: filter 0.3s ease-in-out, transform 0.3s ease-in-out;
+                filter: grayscale(100%);
+            }
+
+            .partner-box:hover {
+                filter: grayscale(0%);
+                transform: scale(1.1);
+            }
+
+            @media (max-width: 768px) {
+                .partner-box {
+                    filter: grayscale(0%);
+                    width: 150px;
+                    height: 75px;
+                }
+                
+                .logos-slide {
+                    gap: 20px;
+                }
+            }
 </style>
 <body>
     <header class="header" id="header">
@@ -1089,6 +1186,35 @@ button {
                 </div>
             </div>
         </section>
+        <section id="authorized-partners" class="section">
+          <div class="section-content">
+              <div class="section-header centered">
+                  <i class="fas fa-handshake"></i>
+                  <h2>Authorized Partners</h2>
+              </div>
+              <div class="logos">
+                  <div class="logos-slide">
+                      <img src="images/logo1.png" alt="Partner 1" class="partner-box">
+                      <img src="images/logo2.png" alt="Partner 2" class="partner-box">
+                      <img src="images/logo3.png" alt="Partner 3" class="partner-box">
+                      <img src="images/logo4.png" alt="Partner 4" class="partner-box">
+                      <img src="images/logo5.png" alt="Partner 5" class="partner-box">
+                      <img src="images/logo6.png" alt="Partner 6" class="partner-box">
+                      <img src="images/logo7.png" alt="Partner 7" class="partner-box">
+                      <img src="images/logo1.png" alt="Partner 1" class="partner-box">
+                  </div>
+                  <div class="logos-slide">
+                      <img src="images/logo2.png" alt="Partner 2" class="partner-box">
+                      <img src="images/logo3.png" alt="Partner 3" class="partner-box">
+                      <img src="images/logo4.png" alt="Partner 4" class="partner-box">
+                      <img src="images/logo5.png" alt="Partner 5" class="partner-box">
+                      <img src="images/logo6.png" alt="Partner 6" class="partner-box">
+                      <img src="images/logo7.png" alt="Partner 7" class="partner-box">
+                      <img src="images/logo1.png" alt="Partner 1" class="partner-box">
+                  </div>
+              </div>
+          </div>
+      </section>
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
