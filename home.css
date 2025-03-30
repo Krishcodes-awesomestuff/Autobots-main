@@ -889,7 +889,7 @@ button {
 
   .logos-slide {
       display: flex;
-      gap: 40px;
+      gap: 25px;
       animation: slideLeft 8s linear infinite; /* Increased speed from 25s to 15s */
   }
 
@@ -911,7 +911,7 @@ button {
     min-width: 250px;  /* Increased from 180px */
     height: 130px;     /* Increased from 90px */
     object-fit: contain;
-    opacity: 0.7;
+    opacity: 1;
     transition: all 0.3s ease;
 }
 
