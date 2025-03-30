@@ -888,24 +888,53 @@ button {
   }
 
   .logos-slide {
-      display: flex;
-      gap: 25px;
-      animation: slideLeft 8s linear infinite; /* Increased speed from 25s to 15s */
-  }
+    display: flex;
+    gap: 25px;
+    animation: slideLeft 20s linear infinite;
+    width: max-content;  /* Ensure all logos fit */
+}
 
+  @keyframes slideLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50%)); }
+}
+
+@media (max-width: 768px) {
+    .partner-box {
+        min-width: 180px;  /* Reduced width for mobile */
+        height: 100px;    /* Reduced height for mobile */
+    }
+  }
   /* Mobile adjustments for partners */
   @media (max-width: 768px) {
-      .logos-slide {
-          animation: slideLeft 8s linear infinite; /* Faster on mobile */
-      }
+    .partner-box {
+        min-width: 180px;  /* Reduced width for mobile */
+        height: 100px;    /* Reduced height for mobile */
+    }  
+    
+    .logos-slide {
+        gap: 20px;
+        animation: slideLeft 20s linear infinite;
+        width: max-content;
+        padding-right: 20px;  /* Add padding to prevent cutoff */
+    }
+
+    .logos {
+        width: 100%;
+        overflow: hidden;
+        padding: 20px 0;
+    }
   }
 
   @media (max-width: 480px) {
       .logos-slide {
-          animation: slideLeft 8s linear infinite; /* Even faster on smaller screens */
+          animation: slideLeft 20s linear infinite; /* Even faster on smaller screens */
       }
   }
-
+@keyframes slideLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 10px)); }
+}
   /* Partners Section - keeping grayscale */
   .partner-box {
     min-width: 250px;  /* Increased from 180px */
